@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-
+import generate from './generate';
 dotenv.config();
 const PORT = 3000;
 
@@ -13,8 +13,16 @@ app.use(express.json());
 // app.get('/', (req, res) => {
 //   res.status(200).sendFile(path.join(__dirname, '../frontend/index.html'));
 // });
-app.get('/api', (req: Request, res: Response) => {
-  res.status(200).send('backend connected');
+
+app.post('/generate', async (req, res) => {
+  const { tripDescription } = req.body;
+  try {
+    const query = await generate(tripDescription);
+    res.json({ query });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error in generate');
+  }
 });
 
 // 404 redirect to index.html for react router
