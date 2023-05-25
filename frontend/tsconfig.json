@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [".tsx", "./**/*.ts", "./**/*.tsx"]
+}
