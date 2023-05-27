@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: ['**/dist/*'],
   extends: ['standard', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
