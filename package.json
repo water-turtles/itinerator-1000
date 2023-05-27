@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "daisyui": "^2.51.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
