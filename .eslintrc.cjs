@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   ignorePatterns: ['**/dist/*'],
   extends: ['standard', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
