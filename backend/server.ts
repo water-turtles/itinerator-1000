@@ -1,7 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
-// import generate from './generate';
 dotenv.config()
 const PORT = 3000
 
