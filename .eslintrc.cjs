@@ -16,7 +16,7 @@ module.exports = {
   root: true,
   rules: {
     '@typescript-eslint/no-var-requires': 0,
-    "react/no-unescaped-entities": 0,
+    'react/no-unescaped-entities': 0,
     indent: ['error', 2]
   },
   settings: {
