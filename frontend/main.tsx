@@ -7,22 +7,22 @@ import {
 import App from './App'
 // import ErrorPage from './pages/error-page'
 import './index.css'
-import CreateItinerary from './components/CreateItinerary'
-import Dashboard from './components/Dashboard'
+// import CreateItinerary from './components/CreateItinerary'
+// import Dashboard from './components/Dashboard'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />
     // errorElement: <ErrorPage />
-  },
-  {
-    path: '/create',
-    element: <CreateItinerary/>
-  },
-  {
-    path: '/dashboard',
-    element: <Dashboard/>
+  // },
+  // {
+  //   path: '/create',
+  //   element: <CreateItinerary/>
+  // },
+  // {
+  //   path: '/dashboard',
+  //   element: <Dashboard/>
   }
 ])
 
