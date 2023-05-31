@@ -1,27 +1,10 @@
 module.exports = {
   ignorePatterns: ['**/dist/*'],
-  extends: ['standard', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: ['standard', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
-  // parserOptions: {
-  //   ecmaFeatures: {
-  //     jsx: true
-  //   },
-  //   ecmaVersion: 12,
-  //   sourceType: 'module'
-  // },
-  plugins: [
-    'react',
-    '@typescript-eslint'
-  ],
+  plugins: ['@typescript-eslint'],
   root: true,
   rules: {
-    '@typescript-eslint/no-var-requires': 0,
-    'react/no-unescaped-entities': 0,
-    indent: ['error', 2]
-  },
-  settings: {
-    react: {
-      version: 'detect'
-    }
+    '@typescript-eslint/no-var-requires': 0
   }
 }
