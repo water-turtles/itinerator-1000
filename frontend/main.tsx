@@ -5,14 +5,24 @@ import {
   RouterProvider
 } from 'react-router-dom'
 import App from './App'
-import ErrorPage from './pages/error-page'
+// import ErrorPage from './pages/error-page'
 import './index.css'
+import CreateItinerary from './components/CreateItinerary'
+import Dashboard from './components/Dashboard'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />
+    element: <App />
+    // errorElement: <ErrorPage />
+  },
+  {
+    path: '/create',
+    element: <CreateItinerary/>
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard/>
   }
 ])
 
