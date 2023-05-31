@@ -1,13 +1,17 @@
 import './App.css'
 import React from 'react'
-import LoginModal from './components/login-modal'
+
+import LoginModal from './components/login'
 
 function App () {
   return (
-    <div>
+    <div className = "flex flex-col justify-start content-center p-7">
+      <div className="mb-4 self-center">
+        <p className="text-3xl font-bold underline">This is the start of something beautiful</p>
+        <img className="transition-opacity duration-1000" src='https://static.wikia.nocookie.net/terminator/images/3/30/T2jd-t1000-film-5.jpg/' width="550"/>
+      </div>
       <LoginModal />
-      <p className="text-3xl font-bold underline">This is the start of something beautiful</p>
-      <img src='https://static.wikia.nocookie.net/terminator/images/3/30/T2jd-t1000-film-5.jpg/' width="550"/>
+
     </div>
   )
 }
