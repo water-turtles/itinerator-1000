@@ -8,6 +8,12 @@ const app = express()
 app.use(cookieParser())
 app.use(express.json())
 
+app.post('/api/create', (req, res) => {
+  const { itineraryData } = req.body
+  console.log('input from backend', itineraryData)
+  res.status(200).json({ message: 'input received' })
+})
+
 // Main page
 app.get('/api', (req, res) => {
   res.status(200).send('backend')
