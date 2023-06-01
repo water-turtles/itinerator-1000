@@ -5,7 +5,7 @@ import {
   RouterProvider
 } from 'react-router-dom'
 import App from './App'
-import ErrorPage from './pages/error-page'
+// import ErrorPage from './pages/error-page'
 import './index.css'
 import CreateAccount from './pages/create-account'
 import ManageAccount from './pages/manage-account'
@@ -21,8 +21,16 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />
+    element: <App />
+    // errorElement: <ErrorPage />
+  // },
+  // {
+  //   path: '/create',
+  //   element: <CreateItinerary/>
+  // },
+  // {
+  //   path: '/dashboard',
+  //   element: <Dashboard/>
   }
 
 ])

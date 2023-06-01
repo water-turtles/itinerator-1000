@@ -5,7 +5,7 @@
     "module": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
   },
   "include": [".tsx", "./**/*.ts", "./**/*.tsx"]
 }

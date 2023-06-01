@@ -1,7 +1,7 @@
 import './App.css'
-import React from 'react'
 
 import LoginModal from './components/login'
+import Header from './components/Header'
 
 function App () {
   return (
