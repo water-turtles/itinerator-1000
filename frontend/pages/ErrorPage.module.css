@@ -8,6 +8,7 @@
   width: 100vw;
   display: flex;
   justify-content: flex-end;
+  font-style:initial;
 }
 
 /* text properties */
@@ -16,9 +17,16 @@
   width: 40vw;
   flex-direction: column;
   justify-content: center;
-}
-
-h1 {
+  color: rgb(215, 214, 235);
 
 }
 
+@media (max-width: 600px) {
+  .container {
+    background-image: url("https://source.unsplash.com/SHhVXFBLZk0"), linear-gradient(0.25turn,rgba(0, 0, 0, 0.52),rgba(0, 0, 0, 0.583),rgba(0, 0, 0, 1));
+  }
+  .innerText {
+    width: 90vw;
+    color: rgb(215, 214, 235);
+  }
+}
