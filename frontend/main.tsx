@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
@@ -7,10 +7,18 @@ import {
 import App from './App'
 // import ErrorPage from './pages/error-page'
 import './index.css'
-// import CreateItinerary from './components/CreateItinerary'
-// import Dashboard from './components/Dashboard'
+import CreateAccount from './pages/create-account'
+import ManageAccount from './pages/manage-account'
 
 const router = createBrowserRouter([
+  {
+    path: '/create-account',
+    element: <CreateAccount />
+  },
+  {
+    path: '/manage-account',
+    element: <ManageAccount />
+  },
   {
     path: '/',
     element: <App />
@@ -24,6 +32,7 @@ const router = createBrowserRouter([
   //   path: '/dashboard',
   //   element: <Dashboard/>
   }
+
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
