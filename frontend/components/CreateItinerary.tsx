@@ -51,16 +51,24 @@ export default function CreateItinerary () {
       console.log(data)
 
       const divToUpdate = document.querySelector('#GPTAPIResponse')
-      if (divToUpdate) {
-        divToUpdate.innerHTML = `
-        Title: ${data.title} <br />
-        Destination: ${data.destination} <br />
-        Start Date: ${data.proposedDates[0]}<br />
-        End Date: ${data.proposedDates[data.proposedDates.length - 1]}<br />
-        ${data.proposedDates[0]} Morning: ${data.details[data.proposedDates[0]].Morning}
+      let htmlToPush = `
+        <u>Title</u>: ${data.title} <br />
+        <u>Destination</u>: ${data.destination} <br />
+        <u>Start Date</u>: ${data.proposedDates[0]}<br />
+        <u>End Date</u>: ${data.proposedDates[data.proposedDates.length - 1]}
         `
-      }
 
+      data.proposedDates.forEach((date: string) => {
+        console.log(date)
+        htmlToPush = htmlToPush.concat('<br /><u>', date, '</u>')
+        htmlToPush = htmlToPush.concat('<br />', ' Morning: ', data.details[date].Morning)
+        htmlToPush = htmlToPush.concat('<br />', ' Afternoon: ', data.details[date].Afternoon)
+        htmlToPush = htmlToPush.concat('<br />', ' Evening: ', data.details[date].Evening)
+      })
+
+      console.log(htmlToPush)
+
+      if (divToUpdate) divToUpdate.innerHTML = htmlToPush
       /*
       {title: 'Cancun Snorkeling Adventure', destination: 'Cancun', proposedDates: Array(2), details: {…}}
 destination
@@ -84,8 +92,6 @@ title
 :
 "Cancun Snorkeling Adventure"
       */
-
-      // proposedDates.reduce((curr, prev))
 
       /*  [1]   title: "Cancun Snorkeling Trip",
           [1]   destination: "Cancun, Mexico",
