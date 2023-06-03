@@ -1,18 +1,27 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import FormInput from './FormInput'
 import Header from './Header'
+import ItineraryContext from '../context/ItineraryContext'
+
 export default function CreateItinerary () {
+  const context = useContext(ItineraryContext)
+
+  if (context === undefined) {
+    throw new Error('CreateItinerary must be used within an ItineraryProvider')
+  }
+
+  const { setItineraryData } = context
+
   const [destination, setDestination] = useState('')
   const [activity, setActivity] = useState('')
   const [timeOfYear, setTimeOfYear] = useState('')
   const [duration, setDuration] = useState('')
   const [people, setPeople] = useState('')
-
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDuration(e.target.value)
   }
 
-  const itineraryData = {
+  const itineraryParameters = {
     destination,
     activity,
     timeOfYear,
@@ -22,13 +31,13 @@ export default function CreateItinerary () {
 
   const handleSubmit = async () => {
     try {
-      console.log('trying handleSubmit in CreateItinerary', itineraryData)
+      console.log('trying handleSubmit in CreateItinerary', itineraryParameters)
       const response = await fetch('/api/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ itineraryData })
+        body: JSON.stringify({ itineraryParameters })
       })
 
       if (!response.ok) {
@@ -36,11 +45,17 @@ export default function CreateItinerary () {
       }
 
       const data = await response.json()
-      console.log(data)
+      setItineraryData(data)
     } catch (error) {
       console.error('Error:', error)
     }
   }
+
+  useEffect(() => {
+    return () => {
+      console.log('CreateItinerary or Dashboard unmounted')
+    }
+  }, [])
 
   return (
     <>
@@ -63,9 +78,11 @@ export default function CreateItinerary () {
             <FormInput labelText="with..." onInputChange={setPeople} placeholder="with family"/>
             <br/>
             <button onClick={handleSubmit} className="btn w-64 rounded-full">Submit</button>
+
           </div>
         </div>
       </div>
+
     </>
   )
 }

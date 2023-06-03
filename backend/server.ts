@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
+import generate from './controllers/generate.js'
 dotenv.config()
 const PORT = 3000
 
@@ -8,10 +9,18 @@ const app = express()
 app.use(cookieParser())
 app.use(express.json())
 
-app.post('/api/create', (req, res) => {
-  const { itineraryData } = req.body
-  console.log('input from backend', itineraryData)
-  res.status(200).json({ message: 'input received' })
+app.post('/api/create', async (req, res) => {
+  const { itineraryParameters } = req.body
+  console.log('input from backend', itineraryParameters)
+  try {
+    const itineraryResponse = await generate(itineraryParameters)
+    console.log('itineraryResponse in backend', itineraryResponse)
+    res.status(200).json({ itineraryResponse })
+  } catch (error) {
+    console.error('error in using openai', error)
+    res.status(500).send('Internal Server Error')
+  }
+  // res.status(200).json({ message: 'input received' })
 })
 
 // Main page
