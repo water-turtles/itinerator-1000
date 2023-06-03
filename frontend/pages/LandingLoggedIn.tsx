@@ -1,7 +1,9 @@
+import TripList from '../components/TripList'
+
 const LandingLoggedIn: React.FC = () => {
   return (
     <div>
-      Testing testing
+    <TripList/>
     </div>
   )
 }
