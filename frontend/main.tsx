@@ -9,8 +9,15 @@ import ErrorPage from './pages/ErrorPage'
 import './index.css'
 import CreateAccount from './pages/create-account'
 import ManageAccount from './pages/manage-account'
+import Header from './components/Header'
+import LandingLoggedIn from './pages/LandingLoggedIn'
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <ErrorPage />
+  },
   {
     path: '/create-account',
     element: <CreateAccount />
@@ -21,8 +28,14 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />
+    element: <Header />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/home',
+        element: <LandingLoggedIn />
+      }
+    ]
   // },
   // {
   //   path: '/create',
