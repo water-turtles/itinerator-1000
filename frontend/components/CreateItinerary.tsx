@@ -44,8 +44,65 @@ export default function CreateItinerary () {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
-      const data = await response.json()
+      const resp = await response.json()
+      const data = JSON.parse(resp.itineraryResponse)
+      console.log(data)
       setItineraryData(data)
+      console.log(data)
+
+      const divToUpdate = document.querySelector('#GPTAPIResponse')
+      if (divToUpdate) {
+        divToUpdate.innerHTML = `
+        Title: ${data.title} <br />
+        Destination: ${data.destination} <br />
+        Start Date: ${data.proposedDates[0]}<br />
+        End Date: ${data.proposedDates[data.proposedDates.length - 1]}<br />
+        ${data.proposedDates[0]} Morning: ${data.details[data.proposedDates[0]].Morning}
+        `
+      }
+
+      /*
+      {title: 'Cancun Snorkeling Adventure', destination: 'Cancun', proposedDates: Array(2), details: {…}}
+destination
+:
+"Cancun"
+details
+:
+10/01/23
+:
+{Morning: 'Visit the Xel-Ha Park for snorkeling and other water activities', Afternoon: 'Explore the ancient Mayan ruins of Tulum', Evening: 'Enjoy a romantic dinner at the beach'}
+10/02/23
+:
+{Morning: 'Take a boat tour of the Nichupte Lagoon', Afternoon: 'Relax on the beach and soak up the sun', Evening: 'Go shopping in downtown Cancun'}
+[[Prototype]]
+:
+Object
+proposedDates
+:
+(2) ['10/01/23', '10/02/23']
+title
+:
+"Cancun Snorkeling Adventure"
+      */
+
+      // proposedDates.reduce((curr, prev))
+
+      /*  [1]   title: "Cancun Snorkeling Trip",
+          [1]   destination: "Cancun, Mexico",
+          [1]   proposedDates: ["10/01/20", "10/02/20"],
+          [1]   details: {
+          [1]     "10/01/20": {
+          [1]       Morning: "Visit the Chac Mool Beach for snorkeling",
+          [1]       Afternoon: "Visit the El Meco Ruins",
+          [1]       Evening: "Visit the La Isla Shopping Mall"
+          [1]     },
+          [1]     "10/02/20": {
+          [1]       Morning: "Visit the El Rey Ruins",
+          [1]       Afternoon: "Visit the El Mirador Beach for snorkeling",
+          [1]       Evening: "Visit the Plaza Las Americas Shopping Mall"
+          [1]     }
+          [1]   }
+          [1] } */
     } catch (error) {
       console.error('Error:', error)
     }
@@ -75,14 +132,27 @@ export default function CreateItinerary () {
                 <option key={num}>{num} {num === 1 ? 'day' : 'days'}</option>
               ))}
             </select>
-            <FormInput labelText="with..." onInputChange={setPeople} placeholder="with family"/>
+            <FormInput labelText="with..." onInputChange={setPeople} placeholder="2 (e.g. number of people)"/>
             <br/>
-            <button onClick={handleSubmit} className="btn w-64 rounded-full">Submit</button>
-
+            <a href="#modal-displayItinerary">
+              <button onClick={handleSubmit} className="btn w-64 rounded-full">Submit</button>
+            </a>
           </div>
         </div>
       </div>
 
+      {/* This modal will be called by an anchor tag earlier in this return statement */}
+      <div className="modal" id="modal-displayItinerary">
+        <div className="modal-box" id="modalBox-displayItinerary">
+          <h3 className="font-bold text-lg">Here's your sample itinerary:</h3>
+          <div id="GPTAPIResponse" className="py-4">
+            <p> Awaiting Skynet Response... </p>
+          </div>
+          <div className="modal-action">
+            <a href="#" className="btn btn-warning">Close</a>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
