@@ -23,10 +23,6 @@ const router = createBrowserRouter([
     element: <CreateAccount />
   },
   {
-    path: '/manage-account',
-    element: <ManageAccount />
-  },
-  {
     path: '/',
     element: <Header />,
     errorElement: <ErrorPage />,
@@ -34,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/home',
         element: <LandingLoggedIn />
+      },
+      {
+        path: '/manage-account',
+        element: <ManageAccount />
       }
     ]
   // },
